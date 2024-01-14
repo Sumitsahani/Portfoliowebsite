@@ -134,10 +134,9 @@ section .title::after{
 }
 .scroll-up-btn{
     position: fixed;
-    height: 45px;
-    width: 42px;
-    background: crimson;
-    right: 30px;
+    height: 100px;
+    width: 80px;   
+    right: 25px;
     bottom: 10px;
     text-align: center;
     line-height: 45px;
@@ -152,7 +151,7 @@ section .title::after{
     transition: all 0.3s ease;
 }
 .scroll-up-btn.show{
-    bottom: 30px;
+    bottom: 50px;
     opacity: 1;
     pointer-events: auto;
 }
@@ -311,7 +310,9 @@ section .title::after{
   }
 
 .follow{
+    display: flex;
     text-align: center;
+    justify-content: center;
     color:crimson;
     font-size:32px;
 }
