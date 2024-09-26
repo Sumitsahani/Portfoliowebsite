@@ -77,7 +77,7 @@ section .title::after{
 }
 
 /* navbar styling */
-.navbar{
+.navbar {
     position: fixed;
     width: 100%;
     z-index: 999;
@@ -85,32 +85,43 @@ section .title::after{
     font-family: 'Ubuntu', sans-serif;
     transition: all 0.3s ease;
 }
-.navbar.sticky{
+
+.navbar.sticky {
     padding: 15px 0;
     background: crimson;
 }
-.navbar .max-width{
+
+.navbar .max-width {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.navbar .logo a{
+
+.navbar .logo a {
     color: #fff;
     font-size: 35px;
     font-weight: 600;
 }
-.navbar .logo a span{
+
+.navbar .logo a span {
     color: crimson;
     transition: all 0.3s ease;
 }
-.navbar.sticky .logo a span{
+
+.navbar.sticky .logo a span {
     color: #fff;
 }
-.navbar .menu li{
+
+.navbar .menu {
+    display: flex; /* Align items horizontally */
+}
+
+.navbar .menu li {
     list-style: none;
     display: inline-block;
 }
-.navbar .menu li a{
+
+.navbar .menu li a {
     display: block;
     color: #fff;
     font-size: 18px;
@@ -118,12 +129,50 @@ section .title::after{
     margin-left: 25px;
     transition: color 0.3s ease;
 }
-.navbar .menu li a:hover{
+
+.navbar .menu li a:hover {
     color: crimson;
 }
-.navbar.sticky .menu li a:hover{
+
+.navbar.sticky .menu li a:hover {
     color: #fff;
 }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .navbar .menu {
+        display: none; /* Hide menu by default */
+        flex-direction: column; /* Stack menu items vertically */
+        position: absolute; /* Absolute positioning */
+        top: 60px; /* Adjust according to your navbar height */
+        left: 0;
+        width: 100%;
+        background: crimson; /* Background for dropdown */
+    }
+
+    .navbar .menu li {
+        margin-left: 0; /* Reset margin */
+        text-align: center; /* Center text */
+        padding: 10px 0; /* Add padding for clickable area */
+    }
+
+    .navbar .menu-btn {
+        display: block; /* Show menu button */
+        cursor: pointer; /* Cursor pointer for clickable */
+    }
+
+    .navbar .menu-btn.active + .menu {
+        display: flex; /* Show menu when active */
+    }
+}
+
+/* Show menu button icon only for small screens */
+@media (min-width: 769px) {
+    .navbar .menu-btn {
+        display: none; /* Hide menu button on larger screens */
+    }
+}
+
 
 /* menu btn styling */
 .menu-btn{
@@ -343,74 +392,126 @@ section .title::after{
   
 /* services section styling */
 
-.services, .teams{
-    color:#fff;
-    background: #111;
+.services, .teams {
+    color: #fff;
+    background: linear-gradient(135deg, #111, #222); /* Gradient background for depth */
+    padding: 60px 20px; /* Increased padding */
 }
+
+.services .title {
+    position: relative;
+    margin-bottom: 30px; /* Spacing for title */
+}
+
 .services .title::before,
-.teams .title::before{
+.teams .title::before {
     background: #fff;
 }
+
 .services .title::after,
-.teams .title::after{
+.teams .title::after {
     background: #111;
-    content: "what i provide";
+    content: "What I Provide";
 }
-.services .serv-content .card{
-    width: calc(33% - 20px);
+
+.services .serv-content {
+    display: flex;
+    flex-wrap: wrap; /* Allows cards to wrap on smaller screens */
+    justify-content: space-between; /* Adds space between cards */
+}
+
+.services .serv-content .card {
+    flex: 1 1 calc(33% - 20px); /* Responsive width */
+    max-width: calc(33% - 20px); /* Maximum width */
+    height: 200px; /* Set a smaller fixed height for uniformity */
     background: #222;
     text-align: center;
-    border-radius: 6px;
-    padding: 20px 25px;
+    border-radius: 10px; /* Soft rounded corners */
+    padding: 15px; /* Further reduced padding for smaller cards */
+    margin: 10px; /* Margin for spacing */
     cursor: pointer;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+    position: relative; /* For pseudo-elements */
+    overflow: hidden; /* Ensures content doesn't overflow */
 }
-.services .serv-content .card:hover{
+
+.services .serv-content .card:hover {
     background: crimson;
+    transform: translateY(-10px); /* Lift effect on hover */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4); /* Increased shadow on hover */
 }
-.services .serv-content .card .box{
+
+.services .serv-content .card .box {
     transition: all 0.3s ease;
 }
-.services .serv-content .card:hover .box{
-    transform: scale(1.05);
+
+.services .serv-content .card:hover .box {
+    transform: scale(1.05); /* Slight zoom effect */
 }
-.services .serv-content .card i{
-    font-size: 50px;
+
+.services .serv-content .card i {
+    font-size: 40px; /* Reduced icon size */
     color: crimson;
     transition: color 0.3s ease;
 }
-.services .serv-content .card:hover i{
+
+.services .serv-content .card:hover i {
     color: #fff;
 }
-.services .serv-content .card .text{
-    font-size: 25px;
-    font-weight: 500;
-    margin: 10px 0 7px 0;
+
+.services .serv-content .card .text {
+    font-size: 18px; /* Smaller text size */
+    font-weight: 700; /* Bold text for emphasis */
+    margin: 8px 0 4px 0; /* Adjusted spacing */
+}
+
+.services .serv-content .card p {
+    font-size: 12px; /* Smaller font size for descriptions */
+    color: #ccc; /* Lighter color for contrast */
+    line-height: 1.4; /* Improved line height */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .services .serv-content .card {
+        flex: 1 1 calc(50% - 20px); /* 2 cards per row */
+        max-width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .services .serv-content .card {
+        flex: 1 1 100%; /* 1 card per row */
+        max-width: 100%;
+    }
 }
 
 /*=================================================================*/
 /*                      Resume                           
 /*=================================================================*/
-.resume{
-    background:white;
-    height:auto;
+.resume {
+    background: white;
+    height: auto;
+    padding: 20px; /* Add some padding */
 }
+
 .resume .resume-title {
     font-size: 26px;
     font-weight: 700;
     margin-top: 20px;
     margin-bottom: 20px;
     color: #050d18;
-  }
-  
-  .resume .resume-item {
+}
+
+.resume .resume-item {
     padding: 0 0 20px 20px;
     margin-top: -2px;
     border-left: 2px solid crimson;
     position: relative;
-  }
-  
-  .resume .resume-item h4 {
+}
+
+.resume .resume-item h4 {
     line-height: 18px;
     font-size: 18px;
     font-weight: 600;
@@ -418,30 +519,30 @@ section .title::after{
     font-family: "Poppins", sans-serif;
     color: #050d18;
     margin-bottom: 10px;
-  }
-  
-  .resume .resume-item h5 {
+}
+
+.resume .resume-item h5 {
     font-size: 16px;
     background: #e4edf9;
     padding: 5px 15px;
     display: inline-block;
     font-weight: 600;
     margin-bottom: 10px;
-  }
-  
-  .resume .resume-item ul {
+}
+
+.resume .resume-item ul {
     padding-left: 20px;
-  }
-  
-  .resume .resume-item ul li {
+}
+
+.resume .resume-item ul li {
     padding-bottom: 10px;
-  }
-  
-  .resume .resume-item:last-child {
+}
+
+.resume .resume-item:last-child {
     padding-bottom: 0;
-  }
-  
-  .resume .resume-item::before {
+}
+
+.resume .resume-item::before {
     content: "";
     position: absolute;
     width: 16px;
@@ -451,81 +552,174 @@ section .title::after{
     top: 0;
     background: #fff;
     border: 2px solid crimson;
-  }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .resume .resume-item {
+        padding-left: 10px; /* Reduce padding for smaller screens */
+    }
+
+    .resume .resume-title {
+        font-size: 24px; /* Slightly smaller titles */
+    }
+
+    .resume .resume-item h4 {
+        font-size: 16px; /* Slightly smaller item titles */
+    }
+
+    .resume .resume-item h5 {
+        font-size: 14px; /* Slightly smaller item dates */
+    }
+}
 
 /* skills section styling */
 
-.skills .title::after{
-    content: "what i know";
+/* General styles for the skills section */
+.skills {
+    background: #ffebcd; /* Light peach background for a cute look */
+    padding: 60px 0; /* Padding for spacing */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
-.skills .skills-content .column{
-    width: calc(50% - 30px);
+
+.skills .title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 700;
+    color: #ff4500; /* Vibrant color */
 }
-.skills .skills-content .left .text{
-    font-size: 20px;
+
+/* Title after element */
+.skills .title::after {
+    content: "what I know 🧠";
+    display: block;
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #ff6347; /* Tomato color */
+}
+
+/* Main content styles */
+.skills .skills-content {
+    display: flex;
+    flex-wrap: wrap; /* Ensure responsiveness */
+    justify-content: center; /* Center the content */
+}
+
+/* Left column */
+.skills .column {
+    flex: 1 1 300px; /* Responsive flex item */
+    margin: 15px; /* Spacing between columns */
+    min-width: 300px; /* Minimum width for smaller screens */
+}
+
+/* Left text styles */
+.skills .left .text {
+    font-size: 24px;
     font-weight: 600;
     margin-bottom: 10px;
+    color: #ff69b4; /* Hot pink for cuteness */
 }
-.skills .skills-content .left p{
+
+.skills .left p {
     text-align: justify;
+    margin-bottom: 20px; /* Added spacing */
 }
-.skills .skills-content .left a{
+
+.skills .left a {
     display: inline-block;
-    background: crimson;
+    background: #ff6347; /* Tomato color */
     color: #fff;
     font-size: 18px;
     font-weight: 500;
-    padding: 8px 16px;
+    padding: 10px 20px;
     margin-top: 20px;
     border-radius: 6px;
-    border: 2px solid crimson;
+    border: 2px solid #ff6347; /* Same as background */
     transition: all 0.3s ease;
 }
-.skills .skills-content .left a:hover{
-    color: crimson;
-    background: none;
+
+/* Link hover effect */
+.skills .left a:hover {
+    color: #ff6347; /* Tomato color */
+    background: transparent; /* More subtle on hover */
 }
-.skills .skills-content .right .bars{
-    margin-bottom: 15px;
+
+/* Right column styles */
+.skills .right {
+    flex: 1 1 300px; /* Responsive flex item */
+    min-width: 300px; /* Minimum width for smaller screens */
 }
-.skills .skills-content .right .info{
+
+/* Bar styles */
+.skills .bars {
+    margin-bottom: 20px; /* Spacing between bars */
+}
+
+/* Progress bar info */
+.skills .info {
     display: flex;
     margin-bottom: 5px;
     align-items: center;
     justify-content: space-between;
 }
-.skills .skills-content .right span{
+
+.skills .info span {
     font-weight: 500;
     font-size: 18px;
 }
-.skills .skills-content .right .line{
-    height: 5px;
+
+/* Progress line styles */
+.skills .line {
+    height: 10px; /* Slightly thicker for better visibility */
     width: 100%;
-    background: lightgrey;
+    background: #e0e0e0; /* Light gray */
+    border-radius: 5px; /* Rounded edges */
     position: relative;
 }
-.skills .skills-content .right .line::before{
+
+/* Progress bar before element */
+.skills .line::before {
     content: "";
     position: absolute;
     height: 100%;
     left: 0;
     top: 0;
-    background: crimson;
+    background: #ff6347; /* Tomato color */
+    border-radius: 5px; /* Rounded edges */
 }
-.skills-content .right .html::before{
-    width: 90%;
+
+/* Progress bar width percentages */
+.skills .react::before {
+    width: 70%;
 }
-.skills-content .right .css::before{
+.skills .html::before {
+    width: 70%;
+}
+.skills .css::before {
+    width: 70%;
+}
+.skills .js::before {
     width: 60%;
 }
-.skills-content .right .js::before{
-    width: 80%;
+.skills .rn::before {
+    width: 60%;
 }
-.skills-content .right .php::before{
+.skills .bootstrap::before {
     width: 50%;
 }
-.skills-content .right .mysql::before{
-    width: 70%;
+
+/* Responsive media queries */
+@media (max-width: 768px) {
+    .skills .skills-content {
+        flex-direction: column; /* Stack columns on smaller screens */
+    }
+
+    .skills .column {
+        margin: 0; /* Reset margin for smaller screens */
+        width: 100%; /* Full width for smaller screens */
+    }
 }
 
 /* teams section styling */
@@ -573,6 +767,114 @@ section .title::after{
       font-size:50px;
       color: crimson;
   }
+/* General styling */
+.review {
+    padding: 20px;
+    text-align: center;
+}
+
+h3 {
+    margin-bottom: 20px;
+}
+
+.projects {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+/* Project card styling */
+.project-card {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 450px; /* Increased height for better layout */
+    overflow: hidden; /* Prevent overflow */
+}
+
+.project-card:hover {
+    transform: scale(1.05);
+}
+
+.img img {
+    width: 100%;
+    height: 220px; /* Increased height for images */
+    object-fit: cover; /* Ensures the image covers the container without distortion */
+    border-radius: 10px;
+}
+
+.content {
+    flex-grow: 1; /* Ensures the content section grows to fill available space */
+}
+
+.content .title {
+    font-size: 1.5em;
+    margin-top: 10px;
+}
+
+/* Button styling */
+.btn {
+    margin-top: auto; /* Pushes button to the bottom */
+}
+
+.btn button {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%; /* Full width button */
+}
+
+.btn button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Design */
+
+/* For screens 1024px and below (tablets) */
+@media (max-width: 1024px) {
+    .projects {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for tablets */
+    }
+
+    .project-card {
+        height: 400px; /* Adjust height for tablets */
+    }
+}
+
+/* For screens 768px and below (mobile) */
+@media (max-width: 768px) {
+    .projects {
+        grid-template-columns: 1fr; /* 1 column for mobile */
+    }
+
+    .project-card {
+        height: 350px; /* Reduced card height for mobile */
+    }
+}
+
+/* For extra small screens 480px and below */
+@media (max-width: 480px) {
+    .projects {
+        grid-template-columns: 1fr; /* Single column for extra small screens */
+        gap: 10px; /* Smaller gap for small screens */
+    }
+
+    .project-card {
+        height: 300px; /* Reduced card height for smaller screens */
+    }
+
+    .img img {
+        height: 150px; /* Reduced image height for smaller screens */
+    }
+}
 
 
 
@@ -732,65 +1034,85 @@ h2{
 
 
 /* contact section styling */
-.contact .title::after{
-    content: "get in touch";
+.contact .title::after {
+    content: "🤗 Let's Connect!";
 }
-.contact .contact-content .column{
+
+.contact .contact-content .column {
     width: calc(50% - 30px);
+    padding: 20px;
 }
-.contact .contact-content .text{
-    font-size: 20px;
-    font-weight: 600;
+
+.contact .contact-content .text {
+    font-size: 24px;
+    font-weight: 700;
     margin-bottom: 10px;
+    color: #ff6347; /* Tomato color */
 }
-.contact .contact-content .left p{
+
+.contact .contact-content .left p {
     text-align: justify;
+    font-size: 16px;
+    color: #555; /* Dark grey */
 }
-.contact .contact-content .left .icons{
+
+.contact .contact-content .left .icons {
     margin: 10px 0;
 }
-.contact .contact-content .row{
+
+.contact .contact-content .row {
     display: flex;
     height: 65px;
     align-items: center;
 }
-.contact .contact-content .row .info{
+
+.contact .contact-content .row .info {
     margin-left: 30px;
 }
-.contact .contact-content .row i{
-    font-size: 25px;
-    color: crimson;
+
+.contact .contact-content .row i {
+    font-size: 30px; /* Increased icon size */
+    color: #ff6347; /* Tomato color */
 }
-.contact .contact-content .info .head{
-    font-weight: 500;
+
+.contact .contact-content .info .head {
+    font-weight: 600;
+    font-size: 18px;
 }
-.contact .contact-content .info .sub-title{
+
+.contact .contact-content .info .sub-title {
     color: #333;
 }
-.contact .right form .fields{
+
+.contact .right form .fields {
     display: flex;
 }
+
 .contact .right form .field,
-.contact .right form .fields .field{
+.contact .right form .fields .field {
     height: 45px;
     width: 100%;
     margin-bottom: 15px;
 }
-.contact .right form .textarea{
+
+.contact .right form .textarea {
     height: 80px;
     width: 100%;
 }
-.contact .right form .name{
+
+.contact .right form .name {
     margin-right: 10px;
 }
-.contact .right form .email{
-    margin-left: 10px;  
+
+.contact .right form .email {
+    margin-left: 10px;
 }
+
 .contact .right form .field input,
-.contact .right form .textarea textarea{
+.contact .right form .textarea textarea {
     height: 100%;
     width: 100%;
-    border: 1px solid lightgrey;
+    border: 1px solid #ff6347; /* Tomato color */
     border-radius: 6px;
     outline: none;
     padding: 0 15px;
@@ -798,23 +1120,27 @@ h2{
     font-family: 'Poppins', sans-serif;
     transition: all 0.3s ease;
 }
+
 .contact .right form .field input:focus,
-.contact .right form .textarea textarea:focus{
-    border-color: #b3b3b3;
+.contact .right form .textarea textarea:focus {
+    border-color: #ff4500; /* Orange red */
 }
-.contact .right form .textarea textarea{
+
+.contact .right form .textarea textarea {
     padding-top: 10px;
     resize: none;
 }
-.contact .right form .button{
+
+.contact .right form .button {
     height: 47px;
     width: 170px;
 }
-.contact .right form .button button{
+
+.contact .right form .button button {
     width: 100%;
     height: 100%;
-    border: 2px solid crimson;
-    background: crimson;
+    border: 2px solid #ff6347; /* Tomato color */
+    background: #ff6347; /* Tomato color */
     color: #fff;
     outline: none;
     font-size: 20px;
@@ -823,55 +1149,93 @@ h2{
     cursor: pointer;
     transition: all 0.3s ease;
 }
-.contact .right form .button button:hover{
-    color: crimson;
+
+.contact .right form .button button:hover {
+    color: #ff6347;
     background: none;
+    transform: scale(1.05); /* Slight grow effect on hover */
 }
 
-/* footer section styling */
-footer{
+/* Responsive Design */
+@media (max-width: 768px) {
+    .contact .contact-content .column {
+        width: 100%;
+    }
+
+    .contact .right form .fields {
+        flex-direction: column; /* Stack fields on smaller screens */
+    }
+
+    .contact .right form .field,
+    .contact .right form .fields .field {
+        margin-bottom: 15px; /* Add margin for better spacing */
+    }
+}
+
+/* Footer Section Styling */
+footer {
     background: #111;
-    padding: 15px 23px;
+    padding: 10px 20px; /* Reduced padding for a more compact look */
     color: #fff;
     text-align: center;
+    width: 100%; /* Ensures the footer takes the full width */
 }
-footer span a{
+
+.footer-content {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items */
+}
+
+footer span {
+    display: block; /* Make spans block elements for better spacing */
+}
+
+footer p {
+    margin: 5px 0 0; /* Adds space above the paragraph */
+    font-size: 14px; /* Smaller font size for the paragraph */
+}
+
+footer span a {
     color: crimson;
     text-decoration: none;
 }
-footer span a:hover{
+
+footer span a:hover {
     text-decoration: underline;
 }
 
-
-/* responsive media query start */
+/* Responsive Media Query Start */
 @media (max-width: 1300px) {
-    .home .max-width{
+    .home .max-width {
         margin-left: 0px;
     }
 }
 
 @media (max-width: 1104px) {
-    .about .about-content .left img{
+    .about .about-content .left img {
         height: 350px;
         width: 350px;
     }
 }
 
 @media (max-width: 991px) {
-    .max-width{
-        padding: 0 50px;
+    .max-width {
+        padding: 0 50px; /* Responsive padding */
     }
 }
-@media (max-width: 947px){
-    .menu-btn{
+
+@media (max-width: 947px) {
+    .menu-btn {
         display: block;
         z-index: 999;
     }
-    .menu-btn i.active:before{
-        content: "\f00d";
+
+    .menu-btn i.active:before {
+        content: "\f00d"; /* Change icon to close */
     }
-    .navbar .menu{
+
+    .navbar .menu {
         position: fixed;
         height: 100vh;
         width: 100%;
@@ -882,89 +1246,110 @@ footer span a:hover{
         padding-top: 80px;
         transition: all 0.3s ease;
     }
-    .navbar .menu.active{
-        left: 0;
+
+    .navbar .menu.active {
+        left: 0; /* Slide in menu */
     }
-    .navbar .menu li{
+
+    .navbar .menu li {
         display: block;
     }
-    .navbar .menu li a{
+
+    .navbar .menu li a {
         display: inline-block;
         margin: 20px 0;
-        font-size: 25px;
+        font-size: 25px; /* Adjust font size for mobile */
     }
-    .home .home-content .text-2{
+
+    .home .home-content .text-2 {
         font-size: 70px;
     }
-    .home .home-content .text-3{
+
+    .home .home-content .text-3 {
         font-size: 35px;
     }
-    .home .home-content a{
+
+    .home .home-content a {
         font-size: 23px;
         padding: 10px 30px;
     }
-    .max-width{
-        max-width: 930px;
+
+    .max-width {
+        max-width: 930px; /* Limit max width */
     }
-    .about .about-content .column{
+
+    .about .about-content .column {
         width: 100%;
     }
-    .about .about-content .left{
+
+    .about .about-content .left {
         display: flex;
         justify-content: center;
         margin: 0 auto 60px;
     }
-    .about .about-content .right{
+
+    .about .about-content .right {
         flex: 100%;
     }
-    .services .serv-content .card{
+
+    .services .serv-content .card {
         width: calc(50% - 10px);
         margin-bottom: 20px;
     }
+
     .skills .skills-content .column,
-    .contact .contact-content .column{
+    .contact .contact-content .column {
         width: 100%;
         margin-bottom: 35px;
     }
 }
 
 @media (max-width: 690px) {
-    .max-width{
-        padding: 0 23px;
+    .max-width {
+        padding: 0 23px; /* Adjust padding for smaller screens */
     }
-    .home .home-content .text-2{
+
+    .home .home-content .text-2 {
         font-size: 60px;
     }
-    .home .home-content .text-3{
+
+    .home .home-content .text-3 {
         font-size: 32px;
     }
-    .home .home-content a{
+
+    .home .home-content a {
         font-size: 20px;
     }
-    .services .serv-content .card{
-        width: 100%;
+
+    .services .serv-content .card {
+        width: 100%; /* Full width on small screens */
     }
 }
 
 @media (max-width: 500px) {
-    .home .home-content .text-2{
+    .home .home-content .text-2 {
         font-size: 50px;
     }
-    .home .home-content .text-3{
+
+    .home .home-content .text-3 {
         font-size: 27px;
     }
+
     .about .about-content .right .text,
-    .skills .skills-content .left .text{
+    .skills .skills-content .left .text {
         font-size: 19px;
     }
-    .contact .right form .fields{
+
+    .contact .right form .fields {
         flex-direction: column;
     }
+
     .contact .right form .name,
-    .contact .right form .email{
+    .contact .right form .email {
         margin: 0;
     }
-    .scroll-up-btn{
+
+    .scroll-up-btn {
         right: 15px;
         bottom: 15px;
         height: 38px;
@@ -976,30 +1361,24 @@ footer span a:hover{
 
 @media (max-width: 768px) {
     .social__icon-container {
-      --size: 3rem;
+        --size: 3rem; /* Adjust social icon size */
     }
-  }
-  
-  @media screen and (max-width: 600px) {
-    .co {
-          font-size:20px;
-    }
-  }
-
+}
 
 @media screen and (max-width: 600px) {
+    .co {
+        font-size: 20px; /* Adjust co font size */
+    }
+
     .grid-container > div {
-          font-size:10px;
+        font-size: 10px; /* Adjust grid items font size */
     }
-  }
-  @media screen and (max-width: 600px) {
-    .grid-container > div:nth-child(1) i {
-          font-size:20px;
-    }
-    .grid-container > div:nth-child(3) i {
-          font-size:20px;
-    }
+
+    .grid-container > div:nth-child(1) i,
+    .grid-container > div:nth-child(3) i,
     .grid-container > div:nth-child(5) i {
-          font-size:20px;
+        font-size: 20px; /* Adjust icon sizes */
     }
-  }
+}
+
+
